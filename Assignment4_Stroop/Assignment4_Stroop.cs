@@ -46,27 +46,29 @@ namespace Assignment4_Stroop
 
     public static class CoffeeOptionsMethods
     {
-        public static double additionalPrice(CoffeeOptions option)
+        public static double additionalPrice(this CoffeeOptions option)
         {
             switch (option)
             {
-                case CoffeeOptions.BLACK:
-                    return 0.00;
                 case CoffeeOptions.CREAM_AND_SUGAR:
                 case CoffeeOptions.MILK_AND_SUGAR:
                     return 0.25;
                 case CoffeeOptions.CREAM_AND_SUGAR_FREE:
                 case CoffeeOptions.MILK_AND_SUGAR_FREE:
                     return 0.40;
+                case CoffeeOptions.BLACK:
+                default:
+                    return 0.00;
             }
         }
 
-        public static string toString(CoffeeOptions option)
+        public static string toString(this CoffeeOptions option)
         {
             switch (option)
             {
                 case CoffeeOptions.BLACK:
-                    return "Black";
+                default:
+                    return "Just Black";
                 case CoffeeOptions.CREAM_AND_SUGAR:
                     return "Cream and Sugar";
                 case CoffeeOptions.CREAM_AND_SUGAR_FREE:
@@ -110,10 +112,9 @@ namespace Assignment4_Stroop
         }
 
         // RENAME
-        private void getAndValidateInput()
+        private void getCoffeeOptions()
         {
-            int userCoffeeChoice = 0;
-            double coffeePrice = PRICEOFCOFFEE;
+            int userCoffeeChoice;
 
             // while block executes until input is an integer,
             // then assigns value to userCoffeeChoice
@@ -131,27 +132,21 @@ namespace Assignment4_Stroop
                     break;
                 case 2:
                     coffeeOptions = CoffeeOptions.CREAM_AND_SUGAR;
-                    coffeePrice += CREAMSUGAR;
                     break;
                 case 3:
                     coffeeOptions = CoffeeOptions.CREAM_AND_SUGAR_FREE;
-                    coffeePrice += CREAMSUGARFREE;
                     break;
                 case 4:
                     coffeeOptions = CoffeeOptions.MILK_AND_SUGAR;
-                    coffeePrice += MILKSUGAR;
                     break;
                 case 5:
                     coffeeOptions = CoffeeOptions.MILK_AND_SUGAR_FREE;
-                    coffeePrice += MILKSUGARFREE;
                     break;
                 default:
                     Console.WriteLine("Invalid Option, Please Choose Again.\n");
-                    getAndValidateInput();
+                    getCoffeeOptions();
                     break;
             }
-
-            coffeePrice = orderPrice;
         }
 
 
